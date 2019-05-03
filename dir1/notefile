@@ -39,3 +39,72 @@ M       foo
 no changes added to commit (use "git add" and/or "git commit -a")
 [root@ip-172-31-4-76 my_git_demo]#
 
+=============================
+
+[root@ip-172-31-4-76 my_git_demo]# echo -n “Line in file1” >> newfile
+[root@ip-172-31-4-76 my_git_demo]# ls
+bar  dir1  file1  foo  newfile  test1
+[root@ip-172-31-4-76 my_git_demo]# git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   dir1/notefile
+#       modified:   foo
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       bar
+#       newfile
+no changes added to commit (use "git add" and/or "git commit -a")
+[root@ip-172-31-4-76 my_git_demo]# git add .
+[root@ip-172-31-4-76 my_git_demo]# git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       new file:   bar
+#       modified:   dir1/notefile
+#       modified:   foo
+#       new file:   newfile
+#
+[root@ip-172-31-4-76 my_git_demo]# git commit -m “Added line in newfile”
+error: pathspec 'line' did not match any file(s) known to git.
+error: pathspec 'in' did not match any file(s) known to git.
+error: pathspec '"newfile\342\200\235"' did not match any file(s) known to git.
+[root@ip-172-31-4-76 my_git_demo]# git commit -m "Added line in newfile"
+[master 185a23b] Added line in newfile
+ 4 files changed, 43 insertions(+)
+ create mode 100644 bar
+ create mode 100644 newfile
+[root@ip-172-31-4-76 my_git_demo]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
+[root@ip-172-31-4-76 my_git_demo]#  echo -n “Line in file2” >> newfile
+[root@ip-172-31-4-76 my_git_demo]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   newfile
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+[root@ip-172-31-4-76 my_git_demo]# git checkout newfile
+[root@ip-172-31-4-76 my_git_demo]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
+[root@ip-172-31-4-76 my_git_demo]#
+
+==========================
